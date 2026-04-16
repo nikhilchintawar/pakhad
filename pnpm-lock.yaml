@@ -48,31 +48,31 @@ importers:
   packages/benchmark:
     dependencies:
       '@pakhad/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@pakhad/locale-en':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale-en
       '@pakhad/locale-in':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale-in
 
   packages/core:
     dependencies:
       '@pakhad/train':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../train
 
   packages/locale-en:
     dependencies:
       '@pakhad/train':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../train
 
   packages/locale-in:
     dependencies:
       '@pakhad/train':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../train
 
   packages/train: {}

@@ -14,8 +14,8 @@
     "clean": "rm -rf .turbo"
   },
   "dependencies": {
-    "@pakhad/core": "workspace:*",
-    "@pakhad/locale-en": "workspace:*",
-    "@pakhad/locale-in": "workspace:*"
+    "@pakhad/core": "workspace:^",
+    "@pakhad/locale-en": "workspace:^",
+    "@pakhad/locale-in": "workspace:^"
   }
 }

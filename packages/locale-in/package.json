@@ -22,7 +22,7 @@
     "clean": "rm -rf dist .turbo"
   },
   "dependencies": {
-    "@pakhad/train": "workspace:*"
+    "@pakhad/train": "workspace:^"
   },
   "license": "MIT",
   "publishConfig": {
