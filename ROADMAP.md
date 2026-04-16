@@ -10,49 +10,35 @@
   - [x] Confidence-weighted ensemble
   - [x] `create()` and `detect()` API
   - [x] Custom scorer registration
-- [x] `@pakhad/train` with runtime serialization
+- [x] `@pakhad/train` with runtime serialization + CLI
   - [x] BloomFilter (murmur3 double hashing, binary serialization)
   - [x] MarkovModel (n-gram log-probabilities, binary serialization)
-- [x] `@pakhad/locale-en` with real models
-  - [x] Trigram Markov model from US Census + UK ONS names
-  - [x] Bloom filter name list (~370 names, 0.1% FPR)
-- [x] Full test suite (121+ tests)
-- [x] Documentation (README, API reference, locale guide, scorer reference)
-- [x] CI workflow (lint + typecheck + test)
+  - [x] `pakhad-train` CLI: markov, namelist, dictionary, info commands
+- [x] `@pakhad/locale-en` with full US Census + SSA corpus
+  - [x] Trigram Markov model (8,650 trigrams from 165k names)
+  - [x] Bloom filter name list (165,326 names, 0.1% FPR)
+- [x] `@pakhad/locale-in` — 9 Indian language locales
+  - [x] Hindi, Marathi, Tamil, Telugu, Kannada, Malayalam, Bengali, Gujarati, Punjabi
+  - [x] Romanized Latin-script Markov models + name lists
+  - [x] Individual exports (`hi`, `mr`, `ta`, etc.) + default array
+- [x] `@pakhad/benchmark` suite
+  - [x] Precision/recall/F1 (100% precision, 89.8% recall, F1 94.6%)
+  - [x] Latency benchmarks (p99 0.039ms)
+  - [x] Scorer contribution analysis
+  - [x] False positive regression tests
+- [x] 148 tests (unit + property-based with fast-check)
+- [x] Full documentation (README, API ref, locale guide, scorer ref, CLI ref, getting started, training pipeline, troubleshooting)
+- [x] CI workflow (lint + typecheck + test on Node 20+22, ubuntu+macos)
 - [x] Changesets for versioning
-
-## v0.2.0
-
-- [ ] `@pakhad/train` CLI
-  - [ ] `pakhad-train markov` command
-  - [ ] `pakhad-train namelist` command
-  - [ ] `pakhad-train dictionary` command
-- [ ] Expand `@pakhad/locale-en` corpus
-  - [ ] Full US Census name lists (90,000+ names)
-  - [ ] UK ONS complete baby name data
-  - [ ] Common international names used in English contexts
-- [ ] Property-based tests with fast-check for tokenizer
-- [ ] Benchmark suite (`@pakhad/benchmark`)
-  - [ ] Test set: 1000+ real names + 1000+ gibberish strings
-  - [ ] Comparison vs nostril, gibberish-detector
-  - [ ] Precision/recall/F1 per locale per scorer
-  - [ ] Latency benchmark (target: p99 < 1ms)
-
-## v0.3.0
-
-- [ ] `@pakhad/locale-in` — Indian language locales
-  - [ ] Hindi (Devanagari script, dictionary-only in v1)
-  - [ ] Marathi (Devanagari script)
-  - [ ] Tamil, Telugu, Kannada, Malayalam, Bengali, Gujarati, Punjabi
-  - [ ] Individual exports + default array
-- [ ] Script detection improvements
-- [ ] Devanagari tokenization rules
 
 ## v1.0.0
 
+- [ ] Expand Indian locale corpora (larger name databases)
+- [ ] Devanagari-script tokenization rules
 - [ ] Devanagari Markov models (real n-gram training for Indic scripts)
-- [ ] Full training pipeline with corpus management
-- [ ] Comprehensive benchmark results in README
+- [ ] Expand benchmark test set (1000+ real names + 1000+ gibberish)
+- [ ] Comparison benchmarks vs nostril, gibberish-detector
+- [ ] Comprehensive benchmark results table in README
 - [ ] Stable API (no breaking changes after v1.0)
 - [ ] Published to npm
 

@@ -92,19 +92,21 @@ jessica
 
 ### Step 2: Build Models
 
-#### Using the CLI (coming in v0.2.0)
+#### Using the CLI
 
 ```bash
-npx @pakhad/train markov \
+npx pakhad-train markov \
   --input corpora/my-names.txt \
   --order 3 \
   --output models/markov.bin
 
-npx @pakhad/train namelist \
+npx pakhad-train namelist \
   --input corpora/my-names.txt \
-  --false-positive-rate 0.001 \
+  --fpr 0.001 \
   --output models/names.bloom
 ```
+
+See [train-cli.md](train-cli.md) for the full CLI reference.
 
 #### Using the Programmatic API
 

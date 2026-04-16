@@ -102,7 +102,19 @@ Pakhad separates the detection engine from language-specific data. Each locale p
 - **Dictionary** — (optional) bloom filter of known words
 
 Available packs:
-- `@pakhad/locale-en` — English (US Census + UK ONS names)
+- `@pakhad/locale-en` — English (165k names from US Census + SSA baby names)
+- `@pakhad/locale-in` — Indian languages: Hindi, Marathi, Tamil, Telugu, Kannada, Malayalam, Bengali, Gujarati, Punjabi
+
+```ts
+import en from '@pakhad/locale-en';
+import indiaLocales, { hi, mr } from '@pakhad/locale-in';
+
+// Use all locales
+const detector = create({ locales: [en, ...indiaLocales] });
+
+// Or pick specific ones
+const detector2 = create({ locales: [en, hi, mr] });
+```
 
 See [docs/locale-guide.md](docs/locale-guide.md) for how to build custom locale packs from your own data.
 
@@ -143,6 +155,30 @@ interface DetectResult {
   version: string;
 }
 ```
+
+## Benchmarks
+
+Tested against 91 real names + 49 gibberish strings:
+
+| Metric | Value |
+|--------|-------|
+| Precision | 100% |
+| Recall | 89.8% |
+| F1 Score | 94.6% |
+| p50 Latency | 0.009ms |
+| p99 Latency | 0.039ms |
+
+Run benchmarks yourself: `pnpm bench`
+
+## Documentation
+
+- [Getting Started](docs/getting-started.md) -- progressive guide from basic to advanced
+- [API Reference](docs/api.md) -- full API documentation
+- [Scorer Reference](docs/scorer-reference.md) -- how each scorer works
+- [Locale Guide](docs/locale-guide.md) -- using and building locale packs
+- [Train CLI Reference](docs/train-cli.md) -- CLI command reference
+- [Training Pipeline](docs/training-pipeline.md) -- corpus to production models
+- [Troubleshooting](docs/troubleshooting.md) -- common issues and FAQ
 
 ## Requirements
 
