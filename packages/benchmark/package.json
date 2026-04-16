@@ -1,0 +1,21 @@
+{
+  "name": "@pakhad/benchmark",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Benchmark suite for pakhad — precision/recall/F1, latency, comparisons",
+  "type": "module",
+  "scripts": {
+    "bench": "node --import tsx/esm src/run.ts",
+    "build": "echo 'no build needed'",
+    "test": "echo 'benchmarks run via pnpm bench'",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .turbo"
+  },
+  "dependencies": {
+    "@pakhad/core": "workspace:*",
+    "@pakhad/locale-en": "workspace:*",
+    "@pakhad/locale-in": "workspace:*"
+  }
+}

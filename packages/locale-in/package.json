@@ -1,27 +1,19 @@
 {
-  "name": "@pakhad/train",
+  "name": "@pakhad/locale-in",
   "version": "0.1.0",
-  "description": "Training pipeline and runtime serialization helpers for pakhad locale models",
+  "description": "Indian language locale packs for pakhad — Hindi, Marathi, Tamil, Telugu, Kannada, Malayalam, Bengali, Gujarati, Punjabi",
   "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
-    },
-    "./runtime": {
-      "types": "./dist/runtime.d.ts",
-      "import": "./dist/runtime.js",
-      "require": "./dist/runtime.cjs"
     }
-  },
-  "bin": {
-    "pakhad-train": "./dist/cli.js"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": ["dist", "models"],
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
@@ -30,6 +22,9 @@
     "lint:fix": "eslint src/ --fix",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist .turbo"
+  },
+  "dependencies": {
+    "@pakhad/train": "workspace:*"
   },
   "license": "MIT",
   "publishConfig": {
