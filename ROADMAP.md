@@ -49,4 +49,3 @@
 - [ ] Streaming API for real-time validation
 - [ ] Batch/cluster detection across multiple inputs
 - [ ] Web playground / demo site
-- [ ] VS Code extension for form validation
