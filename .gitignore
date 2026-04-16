@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.turbo/
+coverage/
+*.log
+.DS_Store
+.env
+.env.*
+corpora/*.txt
+corpora/*.csv
+!corpora/README.md

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": ["@changesets/changelog-github", { "repo": "nikhilchintawar/pakhad" }],
+  "commit": false,
+  "fixed": [],
+  "linked": [["@pakhad/*"]],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": ["@pakhad/benchmark"]
+}
