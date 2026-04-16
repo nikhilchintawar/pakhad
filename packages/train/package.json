@@ -1,6 +1,6 @@
 {
   "name": "@pakhad/train",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Training pipeline and runtime serialization helpers for pakhad locale models",
   "type": "module",
   "exports": {

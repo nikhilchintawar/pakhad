@@ -1,6 +1,6 @@
 {
   "name": "@pakhad/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Gibberish and fake-input detection for text fields — the core detection engine",
   "type": "module",
   "exports": {

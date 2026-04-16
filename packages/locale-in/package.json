@@ -1,6 +1,6 @@
 {
   "name": "@pakhad/locale-in",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Indian language locale packs for pakhad — Hindi, Marathi, Tamil, Telugu, Kannada, Malayalam, Bengali, Gujarati, Punjabi",
   "type": "module",
   "exports": {
