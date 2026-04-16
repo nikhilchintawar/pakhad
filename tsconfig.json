@@ -3,9 +3,5 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "references": [
-    { "path": "packages/train" },
-    { "path": "packages/core" },
-    { "path": "packages/locale-en" }
-  ]
+  "include": []
 }

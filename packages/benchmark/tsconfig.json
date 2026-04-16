@@ -5,10 +5,5 @@
     "rootDir": "src",
     "noEmit": true
   },
-  "include": ["src"],
-  "references": [
-    { "path": "../core" },
-    { "path": "../locale-en" },
-    { "path": "../locale-in" }
-  ]
+  "include": ["src"]
 }
