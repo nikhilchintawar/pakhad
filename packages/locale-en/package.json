@@ -1,7 +1,17 @@
 {
   "name": "@pakhad/locale-en",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "English locale pack for pakhad — Markov model and name list",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nikhilchintawar/pakhad.git",
+    "directory": "packages/locale-en"
+  },
+  "homepage": "https://github.com/nikhilchintawar/pakhad#readme",
+  "bugs": {
+    "url": "https://github.com/nikhilchintawar/pakhad/issues"
+  },
+  "keywords": ["pakhad", "gibberish-detection", "english", "locale", "names"],
   "type": "module",
   "exports": {
     ".": {

@@ -1,7 +1,17 @@
 {
   "name": "@pakhad/train",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Training pipeline and runtime serialization helpers for pakhad locale models",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nikhilchintawar/pakhad.git",
+    "directory": "packages/train"
+  },
+  "homepage": "https://github.com/nikhilchintawar/pakhad#readme",
+  "bugs": {
+    "url": "https://github.com/nikhilchintawar/pakhad/issues"
+  },
+  "keywords": ["pakhad", "gibberish-detection", "markov-model", "bloom-filter", "nlp", "training"],
   "type": "module",
   "exports": {
     ".": {
