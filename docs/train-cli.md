@@ -200,3 +200,9 @@ The CLI automatically:
 | 100,000+ names | Excellent | Excellent |
 
 **Recommendation:** Aim for 10,000+ names for production quality. The English locale ships with 165,000+ names.
+
+## See Also
+
+- [Training Pipeline](training-pipeline.md) -- end-to-end workflow from corpus sourcing to deployment
+- [Locale Guide](locale-guide.md) -- packaging trained models as a locale pack
+- [API Reference](api.md) -- `BloomFilter` and `MarkovModel` programmatic API
