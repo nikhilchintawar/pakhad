@@ -1,6 +1,6 @@
 {
   "name": "@pakhad/core",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Gibberish and fake-input detection for text fields — the core detection engine",
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 {
   "name": "@pakhad/locale-en",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "English locale pack for pakhad — Markov model and name list",
   "repository": {
     "type": "git",

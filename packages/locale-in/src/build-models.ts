@@ -3,18 +3,32 @@
  *
  * Generates Latin-script (romanized) Markov models and name lists for
  * Indian languages. Each language gets its own locale with:
- * - Markov model trained on romanized names
- * - Bloom filter of known names (romanized, lowercase)
+ * - Markov model trained on combined pan-Indian corpus + language-specific curated names
+ * - Bloom filter containing pan-Indian corpus + language-specific names
+ *
+ * The pan-Indian corpus (~9k names) comes from corpora/in-names.txt, which is
+ * built by scripts/build-in-corpus.sh from publicly available Indian name datasets.
+ * Curated per-language lists (below) supplement language-specific names that
+ * may not appear in the general corpus.
  *
  * Run with: npx tsx packages/locale-in/src/build-models.ts
  */
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { BloomFilter, MarkovModel } from '@pakhad/train/runtime';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const modelsDir = resolve(__dirname, '../models');
+const corporaPath = resolve(__dirname, '../../../corpora/in-names.txt');
+
+// Load the pan-Indian corpus (~9k names from laxmimerit + skannan-maf datasets)
+const panIndianNames = readFileSync(corporaPath, 'utf-8')
+  .split('\n')
+  .map((l) => l.trim().toLowerCase())
+  .filter((l) => l.length >= 2 && /^[a-z]+$/.test(l));
+
+console.log(`Loaded ${panIndianNames.length} pan-Indian names from corpus`);
 
 // Curated Indian name corpora — romanized, lowercase.
 // Sourced from publicly available electoral rolls, Wikipedia person lists,
@@ -218,30 +232,34 @@ const languages: LanguageConfig[] = [
   { id: 'in-pa', names: PUNJABI_NAMES },
 ];
 
-// Also build a combined "all Indian names" corpus
-const allIndianNames = [...new Set(languages.flatMap((l) => l.names))];
+// Combined list: pan-Indian corpus + all curated per-language names
+const allCuratedNames = [...new Set(languages.flatMap((l) => l.names))];
+const allIndianNames = [...new Set([...panIndianNames, ...allCuratedNames])];
 
-console.log(`Building models for ${languages.length} Indian languages...`);
-console.log(`Total unique names across all languages: ${allIndianNames.length}`);
+console.log(`\nBuilding models for ${languages.length} Indian languages...`);
+console.log(`Pan-Indian corpus: ${panIndianNames.length} names`);
+console.log(`Curated per-language: ${allCuratedNames.length} names`);
+console.log(`Combined (deduplicated): ${allIndianNames.length} names`);
 
+// Build per-language models: each language gets the pan-Indian corpus
+// plus its own curated names. The Markov model learns the general "Indian name"
+// character distribution, and the bloom filter knows specific names.
 for (const lang of languages) {
-  const unique = [...new Set(lang.names)];
-  console.log(`\n${lang.id}: ${unique.length} names`);
+  const combined = [...new Set([...panIndianNames, ...lang.names])];
+  console.log(`\n${lang.id}: ${combined.length} names (${lang.names.length} curated + ${panIndianNames.length} pan-Indian)`);
 
-  // Build Markov model (trigram, romanized)
-  const markov = MarkovModel.train(unique, 3);
+  const markov = MarkovModel.train(combined, 3);
   const markovBin = markov.serialize();
   writeFileSync(resolve(modelsDir, `${lang.id}-markov.bin`), markovBin);
   console.log(`  Markov: ${markov.size} trigrams, ${markovBin.length} bytes`);
 
-  // Build bloom filter
-  const bloom = BloomFilter.fromItems(unique, 0.001);
+  const bloom = BloomFilter.fromItems(combined, 0.001);
   const bloomBin = bloom.serialize();
   writeFileSync(resolve(modelsDir, `${lang.id}-names.bloom`), bloomBin);
   console.log(`  Bloom: ${bloom.getItemCount()} names, ${bloomBin.length} bytes`);
 }
 
-// Build combined model (all Indian names together)
+// Build combined "in-all" model with everything
 console.log(`\nCombined (all Indian): ${allIndianNames.length} names`);
 const combinedMarkov = MarkovModel.train(allIndianNames, 3);
 const combinedMarkovBin = combinedMarkov.serialize();

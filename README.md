@@ -9,6 +9,24 @@ the chaff.
 
 ## Quick Start
 
+**Zero-config (recommended for most users):**
+
+```bash
+npm install @pakhad/default
+```
+
+```ts
+import { detect } from '@pakhad/default';
+
+detect('Sarah Johnson');   // { label: 'clean', score: 0.05 }
+detect('Rahul Sharma');     // { label: 'clean', score: 0.09 }
+detect('asdfgh qwerty');   // { label: 'gibberish', score: 0.8 }
+```
+
+Includes English + 9 Indian language locales out of the box.
+
+**Custom setup (smaller bundle, pick your locales):**
+
 ```bash
 npm install @pakhad/core @pakhad/locale-en
 ```
@@ -18,16 +36,7 @@ import { create } from '@pakhad/core';
 import en from '@pakhad/locale-en';
 
 const detector = create({ locales: [en] });
-
-// Real name -> clean
-const result = detector.detect('Sarah Johnson', { fieldType: 'name' });
-console.log(result.label); // "clean"
-console.log(result.score); // ~0.05
-
-// Keyboard mash -> gibberish
-const gibberish = detector.detect('asdfgh qwerty', { fieldType: 'name' });
-console.log(gibberish.label); // "gibberish"
-console.log(gibberish.score); // ~0.8
+detector.detect('Sarah Johnson', { fieldType: 'name' });
 ```
 
 ## How It Works
@@ -102,8 +111,9 @@ Pakhad separates the detection engine from language-specific data. Each locale p
 - **Dictionary** — (optional) bloom filter of known words
 
 Available packs:
+- `@pakhad/default` — zero-config bundle (core + English + all Indian locales)
 - `@pakhad/locale-en` — English (165k names from US Census + SSA baby names)
-- `@pakhad/locale-in` — Indian languages: Hindi, Marathi, Tamil, Telugu, Kannada, Malayalam, Bengali, Gujarati, Punjabi
+- `@pakhad/locale-in` — Indian languages: Hindi, Marathi, Tamil, Telugu, Kannada, Malayalam, Bengali, Gujarati, Punjabi (9k+ names per language)
 
 ```ts
 import en from '@pakhad/locale-en';
@@ -158,15 +168,31 @@ interface DetectResult {
 
 ## Benchmarks
 
-Tested against 91 real names + 49 gibberish strings:
+Tested against **1,000 real names** (500 English + 500 Indian) and **1,000 gibberish strings**:
 
-| Metric | Value |
-|--------|-------|
-| Precision | 100% |
-| Recall | 89.8% |
-| F1 Score | 94.6% |
-| p50 Latency | 0.009ms |
-| p99 Latency | 0.039ms |
+### Classification Accuracy
+
+| Library | Precision | Recall | F1 | Accuracy | FP (real flagged) | FN (gibberish missed) |
+|---------|-----------|--------|-----|----------|-------------------|------------------------|
+| **pakhad** | **100.0%** | **98.8%** | **99.4%** | **99.4%** | **0 / 1000** | 12 / 1000 |
+| gibberish-detector | 50.0% | 100.0% | 66.7% | 50.0% | 1000 / 1000 | 0 / 1000 |
+| gibberish-detective | 79.0% | 83.5% | 81.2% | 80.7% | 222 / 1000 | 165 / 1000 |
+
+### False Positives on Real Names
+
+| Library | English Names | Indian Names |
+|---------|---------------|--------------|
+| **pakhad** | **0 / 500 (0.0%)** | **0 / 500 (0.0%)** |
+| gibberish-detector | 500 / 500 (100.0%) | 500 / 500 (100.0%) |
+| gibberish-detective | 75 / 500 (15.0%) | 147 / 500 (29.4%) |
+
+### Latency
+
+| Library | p50 | p95 | p99 |
+|---------|-----|-----|-----|
+| pakhad | 0.007ms | 0.015ms | 0.018ms |
+| gibberish-detector | 0.001ms | 0.004ms | 0.005ms |
+| gibberish-detective | 0.010ms | 0.012ms | 0.018ms |
 
 Run benchmarks yourself: `pnpm bench`
 

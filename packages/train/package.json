@@ -1,6 +1,6 @@
 {
   "name": "@pakhad/train",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Training pipeline and runtime serialization helpers for pakhad locale models",
   "repository": {
     "type": "git",

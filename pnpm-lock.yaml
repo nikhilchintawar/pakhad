@@ -56,12 +56,30 @@ importers:
       '@pakhad/locale-in':
         specifier: workspace:^
         version: link:../locale-in
+      gibberish-detective:
+        specifier: ^1.1.1
+        version: 1.1.1
+      gibberish-detector:
+        specifier: ^1.0.0
+        version: 1.0.0
 
   packages/core:
     dependencies:
       '@pakhad/train':
         specifier: workspace:^
         version: link:../train
+
+  packages/default:
+    dependencies:
+      '@pakhad/core':
+        specifier: workspace:^
+        version: link:../core
+      '@pakhad/locale-en':
+        specifier: workspace:^
+        version: link:../locale-en
+      '@pakhad/locale-in':
+        specifier: workspace:^
+        version: link:../locale-in
 
   packages/locale-en:
     dependencies:
@@ -1033,6 +1051,12 @@ packages:
 
   get-tsconfig@4.14.0:
     resolution: {integrity: sha512-yTb+8DXzDREzgvYmh6s9vHsSVCHeC0G3PI5bEXNBHtmshPnO+S5O7qgLEOn0I5QvMy6kpZN8K1NKGyilLb93wA==}
+
+  gibberish-detective@1.1.1:
+    resolution: {integrity: sha512-z/P+WJGMu1pyP2GVLGGOu7viSgKymxWvYhHc4I47Hmztf0tszwUc25CFYZhTnTr8wPT0qTKH3lFIpAICuaTWgg==}
+
+  gibberish-detector@1.0.0:
+    resolution: {integrity: sha512-UNsXkr15uOCbbOBBKWuY9XvXg3bhr+xxam1JDpFhnLiaFydV+y2DxVuR8hiL6EPetUe0pZeXADDLGVeTdOUWCA==}
 
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -2634,6 +2658,10 @@ snapshots:
   get-tsconfig@4.14.0:
     dependencies:
       resolve-pkg-maps: 1.0.0
+
+  gibberish-detective@1.1.1: {}
+
+  gibberish-detector@1.0.0: {}
 
   glob-parent@5.1.2:
     dependencies:

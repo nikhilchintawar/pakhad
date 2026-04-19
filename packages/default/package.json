@@ -1,17 +1,17 @@
 {
-  "name": "@pakhad/locale-in",
+  "name": "@pakhad/default",
   "version": "1.0.0",
-  "description": "Indian language locale packs for pakhad — Hindi, Marathi, Tamil, Telugu, Kannada, Malayalam, Bengali, Gujarati, Punjabi",
+  "description": "Zero-config pakhad — pre-configured detector with English + Indian locales. Just import and use.",
   "repository": {
     "type": "git",
     "url": "https://github.com/nikhilchintawar/pakhad.git",
-    "directory": "packages/locale-in"
+    "directory": "packages/default"
   },
   "homepage": "https://github.com/nikhilchintawar/pakhad#readme",
   "bugs": {
     "url": "https://github.com/nikhilchintawar/pakhad/issues"
   },
-  "keywords": ["pakhad", "gibberish-detection", "indian", "hindi", "marathi", "tamil", "locale", "names"],
+  "keywords": ["pakhad", "gibberish-detection", "fake-input", "validation", "zero-config", "fintech", "kyc"],
   "type": "module",
   "exports": {
     ".": {
@@ -23,7 +23,7 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist", "models"],
+  "files": ["dist"],
   "scripts": {
     "build": "tsup",
     "lint": "eslint src/",
@@ -32,7 +32,9 @@
     "clean": "rm -rf dist .turbo"
   },
   "dependencies": {
-    "@pakhad/train": "workspace:^"
+    "@pakhad/core": "workspace:^",
+    "@pakhad/locale-en": "workspace:^",
+    "@pakhad/locale-in": "workspace:^"
   },
   "license": "MIT",
   "publishConfig": {

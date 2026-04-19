@@ -16,6 +16,8 @@
   "dependencies": {
     "@pakhad/core": "workspace:^",
     "@pakhad/locale-en": "workspace:^",
-    "@pakhad/locale-in": "workspace:^"
+    "@pakhad/locale-in": "workspace:^",
+    "gibberish-detective": "^1.1.1",
+    "gibberish-detector": "^1.0.0"
   }
 }
